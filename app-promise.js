@@ -16,7 +16,7 @@ const argv = yarg.options({
 .argv;
 
 var encodeComponent = encodeURIComponent(argv.address);
-var geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeComponent}&key=AIzaSyAW2IT4F7WDyqzcrhRKKtiL6kWNApSFv8o`;
+var geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeComponent}&key=your_api_key`;
 
 axios.get(geocodeUrl).then((response)=>{
     if(response.data.status === 'ZERO_RESULTS'){
@@ -24,7 +24,7 @@ axios.get(geocodeUrl).then((response)=>{
     }
     var lat =  response.data.results[0].geometry.location.lat;
     var lng =  response.data.results[0].geometry.location.lng;
-    var weatherUrl = `https://api.darksky.net/forecast/4f2db5ece37e3c2367c937c655a3f4db/${lat},${lng}`;
+    var weatherUrl = `https://api.darksky.net/forecast/your_api_key/${lat},${lng}`;
     console.log(response.data.results[0].formatted_address)
     return axios.get(weatherUrl);
 }).then((response)=>{
